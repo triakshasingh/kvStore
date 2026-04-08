@@ -21,5 +21,8 @@ class WriteAheadLog:
                 os.fsync(f.fileno())
         
 
-    def read(self):
-        return self.entries
+    def replay(self):
+        with open(self.path, "r") as f:
+            for line in f:
+                if line.strip():
+                    yield json.load(line)
