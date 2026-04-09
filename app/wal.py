@@ -4,12 +4,14 @@ import threading
 
 
 
-class WriteAheadLog:
+class WAL:
     def __init__(self, path: str):
         self.path = path
         self._lock = threading.Lock()
 
-        os.makedirs(os.path.dirname(path), exist_ok = True)
+        dir_name = os.path.dirname(path)
+        if dir_name:
+            os.makedirs(dir_name, exist_ok=True)
         if not os.path.exists(self.path):
             open(self.path, 'w').close()
 
@@ -25,4 +27,4 @@ class WriteAheadLog:
         with open(self.path, "r") as f:
             for line in f:
                 if line.strip():
-                    yield json.load(line)
+                    yield json.loads(line)
