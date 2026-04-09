@@ -1,5 +1,29 @@
+# WAL and data files
 data/
 *.wal
+
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment variables
 .env
+
+# macOS
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/
